@@ -17,6 +17,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v1.4.4
         with:
+          distribution: 'temurin'
           java-version: '20'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
