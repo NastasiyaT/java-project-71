@@ -4,30 +4,44 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Help.ColorScheme;
 import picocli.CommandLine.Help.Ansi.Style;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
+
+import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
         mixinStandardHelpOptions = true,
-        version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App {
+public class App implements Callable<String> {
 
-    public static void greeting() {
-        System.out.println("Hello World!");
+    @Parameters(index = "0", description = "path to first file")
+    private String filepath1;
+
+    @Parameters(index = "1", description = "path to second file")
+    private String filepath2;
+
+    @Option(names = {"-f", "format"}, description = "output format [default: stylish]", defaultValue = "stylish")
+    private String format;
+
+    @Override
+    public String call() throws Exception {
+        System.out.print(Differ.generate(filepath1, filepath2, format));
+        return null;
     }
 
     public static void main(String[] args) {
         ColorScheme colorScheme = new ColorScheme.Builder()
-                .commands    ()
-                .options     (Style.fg_blue)
-                .parameters  (Style.fg_blue)
+                .commands()
+                .options(Style.fg_blue)
+                .parameters(Style.fg_blue)
                 .optionParams(Style.italic)
-                .errors      (Style.fg_red, Style.bold)
-                .stackTraces (Style.italic)
+                .errors(Style.fg_red, Style.bold)
+                .stackTraces(Style.italic)
                 .applySystemProperties()
                 .build();
 
         new CommandLine(new App())
-                .setColorScheme(colorScheme) // use this color scheme in the usage help message
+                .setColorScheme(colorScheme)
                 .execute(args);
     }
 }
