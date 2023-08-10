@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Differ {
-    public static String generate(String filepath1, String filepath2, String format) throws Exception {
+    public static String generate(String filepath1, String filepath2) throws Exception {
 
         Path path1 = Paths.get(filepath1).toAbsolutePath().normalize();
         Path path2 = Paths.get(filepath2).toAbsolutePath().normalize();
@@ -48,8 +48,7 @@ public class Differ {
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        String diff = mapper.writeValueAsString(results);
 
-        return Formatter.chooseFormat(format, diff);
+        return mapper.writeValueAsString(results);
     }
 }

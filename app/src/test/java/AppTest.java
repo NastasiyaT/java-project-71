@@ -1,4 +1,5 @@
 import hexlet.code.Differ;
+import hexlet.code.Formatter;
 import hexlet.code.Parser;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +46,7 @@ public class AppTest {
         Exception thrown = assertThrows(
                 Exception.class,
                 () -> Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile3.json", "stylish"));
+                "src/test/resources/TestFile3.json"));
 
         assertEquals("File src/test/resources/TestFile3.json doesn't exist!", thrown.getMessage());
     }
@@ -79,8 +80,8 @@ public class AppTest {
                           + setting3: none
                         }
                         """;
-        String result31 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json", "stylish");
+        String result31 = Formatter.chooseFormat("stylish", Differ.generate("src/test/resources/TestFile1.json",
+                "src/test/resources/TestFile2.json"));
         assertEquals(expected31, result31);
 
         String expected32 = """
@@ -98,8 +99,8 @@ public class AppTest {
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'
                 """;
-        String result32 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json", "plain");
+        String result32 = Formatter.chooseFormat("plain", Differ.generate("src/test/resources/TestFile1.json",
+                "src/test/resources/TestFile2.json"));
         assertEquals(expected32, result32);
 
         String expected33 = "[{\"change\":\"same\",\"key\":\"chars1\",\"value\":[\"a\",\"b\",\"c\"]},"
@@ -125,8 +126,8 @@ public class AppTest {
                 + "{\"change\":\"yes\",\"key\":\"setting2\",\"value\":300},"
                 + "{\"change\":\"no\",\"key\":\"setting3\",\"value\":true},"
                 + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]\n";
-        String result33 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json", "json");
+        String result33 = Formatter.chooseFormat("json", Differ.generate("src/test/resources/TestFile1.json",
+                "src/test/resources/TestFile2.json"));
         assertEquals(expected33, result33);
     }
 
@@ -159,8 +160,8 @@ public class AppTest {
                   + setting3: none
                 }
                 """;
-        String result41 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml", "stylish");
+        String result41 = Formatter.chooseFormat("stylish", Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml"));
         assertEquals(expected41, result41);
 
         String expected42 = """
@@ -179,8 +180,8 @@ public class AppTest {
                 Property 'setting3' was updated. From true to 'none'
                 """;
 
-        String result42 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml", "plain");
+        String result42 = Formatter.chooseFormat("plain", Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml"));
         assertEquals(expected42, result42);
 
         String expected43 = "[{\"change\":\"same\",\"key\":\"chars1\",\"value\":[\"a\",\"b\",\"c\"]},"
@@ -206,8 +207,8 @@ public class AppTest {
                 + "{\"change\":\"yes\",\"key\":\"setting2\",\"value\":300},"
                 + "{\"change\":\"no\",\"key\":\"setting3\",\"value\":true},"
                 + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]\n";
-        String result43 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml", "json");
+        String result43 = Formatter.chooseFormat("json", Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml"));
         assertEquals(expected43, result43);
     }
 }

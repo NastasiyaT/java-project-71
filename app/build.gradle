@@ -41,8 +41,12 @@ jacocoTestReport {
 }
 
 jacoco {
-    toolVersion = "0.8.9"
-    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+    applyTo run
+}
+
+tasks.register('applicationCodeCoverageReport', JacocoReport) {
+    executionData run
+    sourceSets sourceSets.main
 }
 
 run {

@@ -7,18 +7,11 @@ import hexlet.code.formatters.Stylish;
 public class Formatter {
     public static String chooseFormat(String format, String line) throws Exception {
 
-        String result = "";
-
-        if (format.equals("stylish")) {
-            result = Stylish.formatStylish(line);
-        } else if (format.equals("plain")) {
-            result = Plain.formatPlain(line);
-        } else if (format.equals("json")) {
-            result = JsonFormatter.formatJson(line);
-        } else {
-            throw new Exception("Invalid format!");
-        }
-
-        return result;
+        return switch (format) {
+            case "stylish" -> Stylish.formatStylish(line);
+            case "plain" -> Plain.formatPlain(line);
+            case "json" -> JsonFormatter.formatJson(line);
+            default -> throw new Exception("Invalid format!");
+        };
     }
 }
