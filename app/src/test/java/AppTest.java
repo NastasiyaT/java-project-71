@@ -1,5 +1,4 @@
 import hexlet.code.Differ;
-import hexlet.code.Formatter;
 import hexlet.code.Parser;
 import org.junit.jupiter.api.Test;
 
@@ -80,8 +79,8 @@ public class AppTest {
                           + setting3: none
                         }
                         """;
-        String result31 = Formatter.chooseFormat("stylish", Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json"));
+        String result31 = Differ.generate("src/test/resources/TestFile1.json",
+                "src/test/resources/TestFile2.json", "stylish");
         assertEquals(expected31, result31);
 
         String expected32 = """
@@ -99,9 +98,9 @@ public class AppTest {
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'
                 """;
-        String result32 = Formatter.chooseFormat("plain", Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json"));
-        assertEquals(expected32, result32);
+        String result32 = Differ.generate("src/test/resources/TestFile1.json",
+                "src/test/resources/TestFile2.json", "plain");
+                assertEquals(expected32, result32);
 
         String expected33 = "[{\"change\":\"same\",\"key\":\"chars1\",\"value\":[\"a\",\"b\",\"c\"]},"
                 + "{\"change\":\"no\",\"key\":\"chars2\",\"value\":[\"d\",\"e\",\"f\"]},"
@@ -126,8 +125,8 @@ public class AppTest {
                 + "{\"change\":\"yes\",\"key\":\"setting2\",\"value\":300},"
                 + "{\"change\":\"no\",\"key\":\"setting3\",\"value\":true},"
                 + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]\n";
-        String result33 = Formatter.chooseFormat("json", Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json"));
+        String result33 = Differ.generate("src/test/resources/TestFile1.json",
+                "src/test/resources/TestFile2.json", "json");
         assertEquals(expected33, result33);
     }
 
@@ -160,8 +159,8 @@ public class AppTest {
                   + setting3: none
                 }
                 """;
-        String result41 = Formatter.chooseFormat("stylish", Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml"));
+        String result41 = Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml", "stylish");
         assertEquals(expected41, result41);
 
         String expected42 = """
@@ -180,8 +179,8 @@ public class AppTest {
                 Property 'setting3' was updated. From true to 'none'
                 """;
 
-        String result42 = Formatter.chooseFormat("plain", Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml"));
+        String result42 = Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml", "plain");
         assertEquals(expected42, result42);
 
         String expected43 = "[{\"change\":\"same\",\"key\":\"chars1\",\"value\":[\"a\",\"b\",\"c\"]},"
@@ -207,8 +206,42 @@ public class AppTest {
                 + "{\"change\":\"yes\",\"key\":\"setting2\",\"value\":300},"
                 + "{\"change\":\"no\",\"key\":\"setting3\",\"value\":true},"
                 + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]\n";
-        String result43 = Formatter.chooseFormat("json", Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml"));
+        String result43 = Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml", "json");
         assertEquals(expected43, result43);
+    }
+
+    @Test
+    public void testGendiffNoFormat() throws Exception {
+        String expected5 = """
+                {
+                    chars1: [a, b, c]
+                  - chars2: [d, e, f]
+                  + chars2: false
+                  - checked: false
+                  + checked: true
+                  - default: null
+                  + default: [value1, value2]
+                  - id: 45
+                  + id: null
+                  - key1: value1
+                  + key2: value2
+                    numbers1: [1, 2, 3, 4]
+                  - numbers2: [2, 3, 4, 5]
+                  + numbers2: [22, 33, 44, 55]
+                  - numbers3: [3, 4, 5]
+                  + numbers4: [4, 5, 6]
+                  + obj1: {nestedKey=value, isNested=true}
+                  - setting1: Some value
+                  + setting1: Another value
+                  - setting2: 200
+                  + setting2: 300
+                  - setting3: true
+                  + setting3: none
+                }
+                """;
+        String result5 = Differ.generate("src/test/resources/TestFile5.yml",
+                "src/test/resources/TestFile6.yml");
+        assertEquals(expected5, result5);
     }
 }
