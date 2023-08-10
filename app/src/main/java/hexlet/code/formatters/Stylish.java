@@ -27,7 +27,7 @@ public class Stylish {
             str.append(i.getKey()).append(": ").append(i.getValue()).append("\n");
         }
 
-        str.append("}\n");
+        str.append("}");
 
         return str.toString();
     }

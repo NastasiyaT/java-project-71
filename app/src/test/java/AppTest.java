@@ -77,8 +77,7 @@ public class AppTest {
                           + setting2: 300
                           - setting3: true
                           + setting3: none
-                        }
-                        """;
+                        }""";
         String result31 = Differ.generate("src/test/resources/TestFile1.json",
                 "src/test/resources/TestFile2.json", "stylish");
         assertEquals(expected31, result31);
@@ -96,8 +95,7 @@ public class AppTest {
                 Property 'obj1' was added with value: [complex value]
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
-                Property 'setting3' was updated. From true to 'none'
-                """;
+                Property 'setting3' was updated. From true to 'none'""";
         String result32 = Differ.generate("src/test/resources/TestFile1.json",
                 "src/test/resources/TestFile2.json", "plain");
         assertEquals(expected32, result32);
@@ -124,7 +122,7 @@ public class AppTest {
                 + "{\"change\":\"no\",\"key\":\"setting2\",\"value\":200},"
                 + "{\"change\":\"yes\",\"key\":\"setting2\",\"value\":300},"
                 + "{\"change\":\"no\",\"key\":\"setting3\",\"value\":true},"
-                + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]\n";
+                + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]";
         String result33 = Differ.generate("src/test/resources/TestFile1.json",
                 "src/test/resources/TestFile2.json", "json");
         assertEquals(expected33, result33);
@@ -157,8 +155,7 @@ public class AppTest {
                   + setting2: 300
                   - setting3: true
                   + setting3: none
-                }
-                """;
+                }""";
         String result41 = Differ.generate("src/test/resources/TestFile5.yml",
                 "src/test/resources/TestFile6.yml", "stylish");
         assertEquals(expected41, result41);
@@ -176,8 +173,7 @@ public class AppTest {
                 Property 'obj1' was added with value: [complex value]
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
-                Property 'setting3' was updated. From true to 'none'
-                """;
+                Property 'setting3' was updated. From true to 'none'""";
 
         String result42 = Differ.generate("src/test/resources/TestFile5.yml",
                 "src/test/resources/TestFile6.yml", "plain");
@@ -205,7 +201,7 @@ public class AppTest {
                 + "{\"change\":\"no\",\"key\":\"setting2\",\"value\":200},"
                 + "{\"change\":\"yes\",\"key\":\"setting2\",\"value\":300},"
                 + "{\"change\":\"no\",\"key\":\"setting3\",\"value\":true},"
-                + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]\n";
+                + "{\"change\":\"yes\",\"key\":\"setting3\",\"value\":\"none\"}]";
         String result43 = Differ.generate("src/test/resources/TestFile5.yml",
                 "src/test/resources/TestFile6.yml", "json");
         assertEquals(expected43, result43);
@@ -238,8 +234,7 @@ public class AppTest {
                   + setting2: 300
                   - setting3: true
                   + setting3: none
-                }
-                """;
+                }""";
         String result5 = Differ.generate("src/test/resources/TestFile5.yml",
                 "src/test/resources/TestFile6.yml");
         assertEquals(expected5, result5);

@@ -25,8 +25,7 @@ public class App implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        String diff = Differ.generate(filepath1, filepath2);
-        System.out.print(Formatter.chooseFormat(format, diff));
+        System.out.println(Differ.generate(filepath1, filepath2, format));
         return null;
     }
 
