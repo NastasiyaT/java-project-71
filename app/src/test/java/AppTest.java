@@ -100,7 +100,7 @@ public class AppTest {
                 """;
         String result32 = Differ.generate("src/test/resources/TestFile1.json",
                 "src/test/resources/TestFile2.json", "plain");
-                assertEquals(expected32, result32);
+        assertEquals(expected32, result32);
 
         String expected33 = "[{\"change\":\"same\",\"key\":\"chars1\",\"value\":[\"a\",\"b\",\"c\"]},"
                 + "{\"change\":\"no\",\"key\":\"chars2\",\"value\":[\"d\",\"e\",\"f\"]},"
