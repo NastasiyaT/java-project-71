@@ -4,6 +4,3 @@ run-dist:
 .PHONY: build
 build:
 	gradle clean build
-
-report:
-	gradle jacocoTestReport
