@@ -3,7 +3,7 @@ package hexlet.code;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Item {
+public final class Item {
     private String change;
     private String key;
     private Object value;
