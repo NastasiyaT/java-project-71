@@ -29,15 +29,15 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-tasks.named('test', Test) {
-    useJUnitPlatform()
-}
-
 test {
+    useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
+
 jacocoTestReport {
-    dependsOn test
+    reports {
+        xml.required = true
+    }
 }
 
 run {
