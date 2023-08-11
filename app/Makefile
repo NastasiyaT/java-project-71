@@ -3,4 +3,4 @@ run-dist:
 
 .PHONY: build
 build:
-	gradle clean build
+	gradle build
