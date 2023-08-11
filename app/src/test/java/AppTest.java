@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AppTest {
-    private final int QUANTITY = 4;
+    private final int quantity = 4;
 
     @Test
     public void testParserJson() throws Exception {
         Map<String, Object> expected = Map.of("item", "table",
-                "quantity", QUANTITY,
+                "quantity", quantity,
                 "color", "grey",
                 "availability", true);
 
@@ -24,7 +24,7 @@ public class AppTest {
     @Test
     public void testParserYaml() throws Exception {
         Map<String, Object> expected = Map.of("item", "table",
-                "quantity", QUANTITY,
+                "quantity", quantity,
                 "color", "grey",
                 "availability", true);
 

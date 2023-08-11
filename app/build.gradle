@@ -33,20 +33,10 @@ tasks.named('test', Test) {
     useJUnitPlatform()
 }
 
-test {
-    finalizedBy jacocoTestReport
-}
 jacocoTestReport {
-    dependsOn test
-}
-
-jacoco {
-    applyTo run
-}
-
-tasks.register('applicationCodeCoverageReport', JacocoReport) {
-    executionData run
-    sourceSets sourceSets.main
+    reports {
+        xml.required = true
+    }
 }
 
 run {

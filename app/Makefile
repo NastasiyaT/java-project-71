@@ -3,7 +3,7 @@ run-dist:
 
 .PHONY: build
 build:
-	make -C app build
+	gradle clean build
 
 report:
-	make -C app report
+	gradle jacocoTestReport
