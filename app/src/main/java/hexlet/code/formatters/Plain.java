@@ -60,7 +60,7 @@ public class Plain {
             case "updated" -> {
                 return  "Property '" + key + "' was updated. From "
                         + obj.getValueOld() + " to " + obj.getValueNew();
-                }
+            }
             default -> throw new Exception("Invalid value!");
         }
     }
