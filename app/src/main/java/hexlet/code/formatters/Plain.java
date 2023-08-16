@@ -49,16 +49,19 @@ public class Plain {
     private static String getLine(Item obj) throws Exception {
         String diff = obj.getChange();
         String key = obj.getKey();
-        String result = "";
 
         switch (diff) {
-            case "added" -> result = "Property '" + key + "' was added with value: " + obj.getValue();
-            case "removed" -> result = "Property '" + key + "' was removed";
-            case "updated" -> result = "Property '" + key + "' was updated. From "
-                    + obj.getValueOld() + " to " + obj.getValueNew();
+            case "added" -> {
+                return "Property '" + key + "' was added with value: " + obj.getValue();
+            }
+            case "removed" -> {
+                return  "Property '" + key + "' was removed";
+            }
+            case "updated" -> {
+                return  "Property '" + key + "' was updated. From "
+                        + obj.getValueOld() + " to " + obj.getValueNew();
+                }
             default -> throw new Exception("Invalid value!");
         }
-
-        return result;
     }
 }

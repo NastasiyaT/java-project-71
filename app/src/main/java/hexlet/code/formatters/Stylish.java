@@ -25,17 +25,22 @@ public class Stylish {
     private static String getLine(Item obj) throws Exception {
         String diff = obj.getChange();
         String key = obj.getKey();
-        String result = "";
 
         switch (diff) {
-            case "added" -> result = "  + " + key + ": " + obj.getValue();
-            case "removed" -> result = "  - " + key + ": " + obj.getValue();
-            case "same" -> result = "    " + key + ": " + obj.getValue();
-            case "updated" -> result = "  - " + key + ": " + obj.getValueOld() + "\n" +
-                    "  + " + key + ": " + obj.getValueNew();
+            case "added" -> {
+                return "  + " + key + ": " + obj.getValue();
+            }
+            case "removed" -> {
+                return "  - " + key + ": " + obj.getValue();
+            }
+            case "same" -> {
+                return "    " + key + ": " + obj.getValue();
+            }
+            case "updated" -> {
+                return "  - " + key + ": " + obj.getValueOld() + "\n"
+                        + "  + " + key + ": " + obj.getValueNew();
+            }
             default -> throw new Exception("Invalid value!");
         }
-
-        return result;
     }
 }

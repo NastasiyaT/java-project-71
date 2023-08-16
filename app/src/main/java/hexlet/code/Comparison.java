@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 public class Comparison {
     public static List<Item> compare(Map<String, Object> list1, Map<String, Object> list2) {
-        
+
         Set<String> keys = new TreeSet<>();
         keys.addAll(list1.keySet());
         keys.addAll(list2.keySet());
