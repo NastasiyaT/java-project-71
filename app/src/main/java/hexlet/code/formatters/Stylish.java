@@ -1,34 +1,41 @@
 package hexlet.code.formatters;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import hexlet.code.Item;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Stylish {
 
-    public static String formatStylish(String data) throws Exception {
+    public static String formatStylish(List<Item> items) {
 
-        List<Item> items = JsonDeserializer.fromJSON(new TypeReference<>() { }, data);
+        String output = items.stream()
+                .map(i -> {
+                    try {
+                        return getLine(i);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.joining("\n"));
 
-        StringBuilder str = new StringBuilder();
-        str.append("{\n");
+        return "{\n" + output + "\n}";
+    }
 
-        for (Item i : items) {
-            str.append("  ");
+    private static String getLine(Item obj) throws Exception {
+        String diff = obj.getChange();
+        String key = obj.getKey();
+        String result = "";
 
-            switch (i.getChange()) {
-                case "yes" -> str.append("+ ");
-                case "no" -> str.append("- ");
-                case "same" -> str.append("  ");
-                default -> throw new Exception("No relevant value!");
-            }
-
-            str.append(i.getKey()).append(": ").append(i.getValue()).append("\n");
+        switch (diff) {
+            case "added" -> result = "  + " + key + ": " + obj.getValue();
+            case "removed" -> result = "  - " + key + ": " + obj.getValue();
+            case "same" -> result = "    " + key + ": " + obj.getValue();
+            case "updated" -> result = "  - " + key + ": " + obj.getValueOld() + "\n" +
+                    "  + " + key + ": " + obj.getValueNew();
+            default -> throw new Exception("Invalid value!");
         }
 
-        str.append("}");
-
-        return str.toString();
+        return result;
     }
 }

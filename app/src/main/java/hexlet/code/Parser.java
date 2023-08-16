@@ -13,14 +13,18 @@ public class Parser {
         Map<String, Object> results = new HashMap<>() { };
         File fileToRead = new File(pathname);
 
-        if (fileToRead.length() == 0) {
-            throw new Exception("The file is empty!");
-        } else if (pathname.endsWith(".json")) {
-            ObjectMapper mapperJson = new ObjectMapper();
-            results = mapperJson.readValue(fileToRead, new TypeReference<>() { });
-        } else if (pathname.endsWith(".yml") || pathname.endsWith(".yaml")) {
-            ObjectMapper mapperYaml = new YAMLMapper();
-            results = mapperYaml.readValue(fileToRead, new TypeReference<>() { });
+        String[] str = pathname.split("\\.");
+
+        switch (str[str.length - 1]) {
+            case "json" -> {
+                ObjectMapper mapperJson = new ObjectMapper();
+                results = mapperJson.readValue(fileToRead, new TypeReference<>() { });
+            }
+            case "yml", "yaml" -> {
+                ObjectMapper mapperYaml = new YAMLMapper();
+                results = mapperYaml.readValue(fileToRead, new TypeReference<>() { });
+            }
+            default -> throw new Exception("Invalid format!");
         }
 
         return results;

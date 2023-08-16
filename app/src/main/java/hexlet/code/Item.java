@@ -1,23 +1,25 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public final class Item {
     private String change;
     private String key;
     private Object value;
+    private Object valueOld;
+    private Object valueNew;
 
-    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public Item(@JsonProperty("change") String change,
-                @JsonProperty("key") String key,
-                @JsonProperty("value") Object value) {
+    public Item(String change, String key, Object value) {
         this.change = change;
         this.key = key;
         this.value = value;
     }
 
-    @JsonProperty("change")
+    public Item(String change, String key, Object valueOld, Object valueNew) {
+        this.change = change;
+        this.key = key;
+        this.valueOld = valueOld;
+        this.valueNew = valueNew;
+    }
+
     public String getChange() {
         return change;
     }
@@ -26,7 +28,6 @@ public final class Item {
         this.change = change;
     }
 
-    @JsonProperty("key")
     public String getKey() {
         return key;
     }
@@ -35,12 +36,27 @@ public final class Item {
         this.key = key;
     }
 
-    @JsonProperty("value")
     public Object getValue() {
         return value;
     }
 
     public void setValue(Object value) {
         this.value = value;
+    }
+
+    public Object getValueNew() {
+        return valueNew;
+    }
+
+    public void setValueNew(Object valueNew) {
+        this.valueNew = valueNew;
+    }
+
+    public Object getValueOld() {
+        return valueOld;
+    }
+
+    public void setValueOld(Object valueOld) {
+        this.valueOld = valueOld;
     }
 }
