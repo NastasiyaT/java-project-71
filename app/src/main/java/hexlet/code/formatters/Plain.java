@@ -5,7 +5,7 @@ import hexlet.code.Item;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Plain implements Format {
+public final class Plain implements Format {
     public static final String PLAIN_NAME = "plain";
 
     public String format(List<Item> items) {

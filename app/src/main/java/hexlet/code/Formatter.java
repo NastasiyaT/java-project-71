@@ -13,7 +13,7 @@ import static hexlet.code.formatters.Plain.PLAIN_NAME;
 import static hexlet.code.formatters.Stylish.STYLISH_NAME;
 
 public class Formatter {
-    public static Map<String, Format> formatters = Map.of(
+    private static Map<String, Format> formatters = Map.of(
             STYLISH_NAME, new Stylish(),
             PLAIN_NAME, new Plain(),
             JSON_NAME, new JsonFormatter()

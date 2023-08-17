@@ -5,7 +5,7 @@ import hexlet.code.Item;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Stylish implements Format {
+public final class Stylish implements Format {
     public static final String STYLISH_NAME = "stylish";
 
     public String format(List<Item> items) {

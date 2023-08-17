@@ -5,7 +5,7 @@ import hexlet.code.Item;
 
 import java.util.List;
 
-public class JsonFormatter implements Format {
+public final class JsonFormatter implements Format {
     public static final String JSON_NAME = "json";
 
     public String format(List<Item> items) throws Exception {
