@@ -5,8 +5,10 @@ import hexlet.code.Item;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Plain {
-    public static String formatPlain(List<Item> items) {
+public class Plain implements Format {
+    public static final String PLAIN_NAME = "plain";
+
+    public String format(List<Item> items) {
 
         return items.stream()
                 .filter(i -> !i.getChange().equals("same"))

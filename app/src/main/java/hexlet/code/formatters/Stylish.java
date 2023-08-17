@@ -5,9 +5,10 @@ import hexlet.code.Item;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Stylish {
+public class Stylish implements Format {
+    public static final String STYLISH_NAME = "stylish";
 
-    public static String formatStylish(List<Item> items) {
+    public String format(List<Item> items) {
 
         String output = items.stream()
                 .map(i -> {
