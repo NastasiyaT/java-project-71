@@ -17,14 +17,20 @@ public class Comparison {
         List<Item> results = new ArrayList<>();
 
         for (String k : keys) {
-            if (list1.containsKey(k) && !list2.containsKey(k)) {
-                results.add(new Item("removed", k, list1.get(k)));
-            } else if (!list1.containsKey(k) && list2.containsKey(k)) {
-                results.add(new Item("added", k, list2.get(k)));
-            } else if (Objects.equals(list1.get(k), list2.get(k))) {
-                results.add(new Item("same", k, list1.get(k)));
+            Object val1 = list1.get(k);
+            Object val2 = list2.get(k);
+
+            boolean isKey1 = list1.containsKey(k);
+            boolean isKey2 = list2.containsKey(k);
+
+            if (isKey1 && !isKey2) {
+                results.add(new Item("removed", k, val1));
+            } else if (!isKey1 && isKey2) {
+                results.add(new Item("added", k, val2));
+            } else if (Objects.equals(val1, val2)) {
+                results.add(new Item("same", k, val1));
             } else {
-                results.add(new Item("updated", k, list1.get(k), list2.get(k)));
+                results.add(new Item("updated", k, val1, val2));
             }
         }
 
