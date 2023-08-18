@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AppTest {
+public final class AppTest {
     private static String stylish;
     private static String plain;
     private static String json;

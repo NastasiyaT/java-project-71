@@ -3,4 +3,17 @@
 
 
 ### How does the application work:
-[![asciicast](https://asciinema.org/a/JX1Hd5QnWwPT3VHKY1XUoNDvt.svg)](https://asciinema.org/a/JX1Hd5QnWwPT3VHKY1XUoNDvt)
+#### - help message:
+[![asciicast](https://asciinema.org/a/w486TWsPHL5SLrH5p2RCETfZX.svg)](https://asciinema.org/a/w486TWsPHL5SLrH5p2RCETfZX)
+
+#### - stylish format:
+[![asciicast](https://asciinema.org/a/fe6GzeE4aGmCI8UQ6jYD8kGLu.svg)](https://asciinema.org/a/fe6GzeE4aGmCI8UQ6jYD8kGLu)
+
+#### - plain format:
+[![asciicast](https://asciinema.org/a/Qx5Gs0F7VrXpCfmJcJD82C0ah.svg)](https://asciinema.org/a/Qx5Gs0F7VrXpCfmJcJD82C0ah)
+
+#### - json format:
+[![asciicast](https://asciinema.org/a/W7uSbK6VeEswPfP7pki2vteGo.svg)](https://asciinema.org/a/W7uSbK6VeEswPfP7pki2vteGo)
+
+#### - default format:
+[![asciicast](https://asciinema.org/a/B7kF8CDBtoEjKhGrnyTVoLPZx.svg)](https://asciinema.org/a/B7kF8CDBtoEjKhGrnyTVoLPZx)
