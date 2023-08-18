@@ -1,6 +1,7 @@
 import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,67 +26,43 @@ public class AppTest {
         json = Files.readString(getPath.apply("src/test/resources/ResultJson.txt"));
     }
 
-    @Test
-    public void testJsonStylish() throws Exception {
-        String expected1 = stylish;
-        String result1 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json", "stylish");
-        assertEquals(expected1, result1);
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    void testStylish(String suffix) throws Exception {
+        String expected = stylish;
+        String path1 = "src/test/resources/TestFile1." + suffix;
+        String path2 = "src/test/resources/TestFile2." + suffix;
+        String result = Differ.generate(path1, path2, "stylish");
+        assertEquals(expected, result);
     }
 
-    @Test
-    public void testJsonPlain() throws Exception {
-        String expected2 = plain;
-        String result2 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json", "plain");
-        assertEquals(expected2, result2);
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    void testPlain(String suffix) throws Exception {
+        String expected = plain;
+        String path1 = "src/test/resources/TestFile1." + suffix;
+        String path2 = "src/test/resources/TestFile2." + suffix;
+        String result = Differ.generate(path1, path2, "plain");
+        assertEquals(expected, result);
     }
 
-    @Test
-    public void testJsonJson() throws Exception {
-        String expected3 = json;
-        String result3 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json", "json");
-        assertEquals(expected3, result3);
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    void testJson(String suffix) throws Exception {
+        String expected = json;
+        String path1 = "src/test/resources/TestFile1." + suffix;
+        String path2 = "src/test/resources/TestFile2." + suffix;
+        String result = Differ.generate(path1, path2, "json");
+        assertEquals(expected, result);
     }
 
-    @Test
-    public void testJsonDefault() throws Exception {
-        String expected4 = stylish;
-        String result4 = Differ.generate("src/test/resources/TestFile1.json",
-                "src/test/resources/TestFile2.json");
-        assertEquals(expected4, result4);
-    }
-
-    @Test
-    public void testYamlStylish() throws Exception {
-        String expected1 = stylish;
-        String result1 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml", "stylish");
-        assertEquals(expected1, result1);
-    }
-
-    @Test
-    public void testYamlPlain() throws Exception {
-        String expected2 = plain;
-        String result2 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml", "plain");
-        assertEquals(expected2, result2);
-    }
-
-    @Test
-    public void testYamlJson() throws Exception {
-        String expected3 = json;
-        String result3 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml", "json");
-        assertEquals(expected3, result3);
-    }
-
-    @Test
-    public void testYamlDefault() throws Exception {
-        String expected4 = stylish;
-        String result4 = Differ.generate("src/test/resources/TestFile5.yml",
-                "src/test/resources/TestFile6.yml");
-        assertEquals(expected4, result4);
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    void testDefault(String suffix) throws Exception {
+        String expected = stylish;
+        String path1 = "src/test/resources/TestFile1." + suffix;
+        String path2 = "src/test/resources/TestFile2." + suffix;
+        String result = Differ.generate(path1, path2);
+        assertEquals(expected, result);
     }
 }

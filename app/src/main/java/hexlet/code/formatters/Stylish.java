@@ -11,19 +11,13 @@ public final class Stylish implements Format {
     public String format(List<Item> items) {
 
         String output = items.stream()
-                .map(i -> {
-                    try {
-                        return getLine(i);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                })
+                .map(Stylish::getLine)
                 .collect(Collectors.joining("\n"));
 
         return "{\n" + output + "\n}";
     }
 
-    private static String getLine(Item obj) throws Exception {
+    private static String getLine(Item obj) {
         String diff = obj.getChange();
         String key = obj.getKey();
 
@@ -41,7 +35,7 @@ public final class Stylish implements Format {
                 return "  - " + key + ": " + obj.getValueOld() + "\n"
                         + "  + " + key + ": " + obj.getValueNew();
             }
-            default -> throw new Exception("Invalid value!");
+            default -> throw new RuntimeException();
         }
     }
 }
