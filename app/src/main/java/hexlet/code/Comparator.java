@@ -17,44 +17,50 @@ public class Comparator {
         List<Item> results = new ArrayList<>();
 
         for (String k : keys) {
-            Object val1 = list1.get(k);
-            Object val2 = list2.get(k);
-
-            boolean isKey1 = list1.containsKey(k);
-            boolean isKey2 = list2.containsKey(k);
-
-            var newItem = new Item();
-
-            if (isKey1 && !isKey2) {
-                newItem = new ItemBuilder()
-                        .withChange("removed")
-                        .withKey(k)
-                        .withValue(val1)
-                        .build();
-            } else if (!isKey1 && isKey2) {
-                newItem = new ItemBuilder()
-                        .withChange("added")
-                        .withKey(k)
-                        .withValue(val2)
-                        .build();
-            } else if (Objects.equals(val1, val2)) {
-                newItem = new ItemBuilder()
-                        .withChange("same")
-                        .withKey(k)
-                        .withValue(val1)
-                        .build();
-            } else {
-                newItem = new ItemBuilder()
-                        .withChange("updated")
-                        .withKey(k)
-                        .withValueOld(val1)
-                        .withValueNew(val2)
-                        .build();
-            }
-
-            results.add(newItem);
+            Item newEntry = createNewItem(k, list1, list2);
+            results.add(newEntry);
         }
 
         return results;
+    }
+
+    private static Item createNewItem(String key, Map<String, Object> items1, Map<String, Object> items2) {
+        Object val1 = items1.get(key);
+        Object val2 = items2.get(key);
+
+        boolean caseRemoved = items1.containsKey(key) && !items2.containsKey(key);
+        boolean caseAdded = !items1.containsKey(key) && items2.containsKey(key);
+        boolean caseEqual = Objects.equals(val1, val2);
+
+        var newItem = new Item();
+
+        if (caseRemoved) {
+            newItem = new ItemBuilder()
+                    .withChange("removed")
+                    .withKey(key)
+                    .withValue(val1)
+                    .build();
+        } else if (caseAdded) {
+            newItem = new ItemBuilder()
+                    .withChange("added")
+                    .withKey(key)
+                    .withValue(val2)
+                    .build();
+        } else if (caseEqual) {
+            newItem = new ItemBuilder()
+                    .withChange("same")
+                    .withKey(key)
+                    .withValue(val1)
+                    .build();
+        } else {
+            newItem = new ItemBuilder()
+                    .withChange("updated")
+                    .withKey(key)
+                    .withValueOld(val1)
+                    .withValueNew(val2)
+                    .build();
+        }
+
+        return newItem;
     }
 }

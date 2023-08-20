@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +7,11 @@ import java.util.Map;
 public class Differ {
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
-        Path path1 = Paths.get(filepath1).toAbsolutePath().normalize();
-        Path path2 = Paths.get(filepath2).toAbsolutePath().normalize();
+        String path1 = Paths.get(filepath1).toAbsolutePath().normalize().toString();
+        String path2 = Paths.get(filepath2).toAbsolutePath().normalize().toString();
 
-        Map<String, Object> list1 = Parser.parseFile(path1.toString());
-        Map<String, Object> list2 = Parser.parseFile(path2.toString());
+        Map<String, Object> list1 = Parser.parseFile(path1);
+        Map<String, Object> list2 = Parser.parseFile(path2);
 
         List<Item> data = Comparator.compare(list1, list2);
 
