@@ -1,6 +1,8 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/NastasiyaT/java-project-71/workflows/hexlet-check/badge.svg)](https://github.com/NastasiyaT/java-project-71/actions) [![Java CI](https://github.com/NastasiyaT/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/NastasiyaT/java-project-71/actions/workflows/main.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/17cb7a98110692315e9e/maintainability)](https://codeclimate.com/github/NastasiyaT/java-project-71/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/17cb7a98110692315e9e/test_coverage)](https://codeclimate.com/github/NastasiyaT/java-project-71/test_coverage)
 
+### What does the application do:
+The `gendiff` is a command line application that compares two `.json` or `.yml` files. There are three output formats: *stylish*, *plain* and *json*.
 
 ### How does the application work:
 #### - help message:
