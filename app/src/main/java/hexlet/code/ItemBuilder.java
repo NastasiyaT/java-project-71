@@ -1,6 +1,6 @@
 package hexlet.code;
 
-public class ItemBuilder {
+public final class ItemBuilder {
     private String change = "";
     private String key = "";
     private Object value = null;
