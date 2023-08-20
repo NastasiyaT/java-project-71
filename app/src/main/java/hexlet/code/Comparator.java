@@ -23,15 +23,36 @@ public class Comparator {
             boolean isKey1 = list1.containsKey(k);
             boolean isKey2 = list2.containsKey(k);
 
+            var newItem = new Item();
+
             if (isKey1 && !isKey2) {
-                results.add(new Item("removed", k, val1));
+                newItem = new ItemBuilder()
+                        .withChange("removed")
+                        .withKey(k)
+                        .withValue(val1)
+                        .build();
             } else if (!isKey1 && isKey2) {
-                results.add(new Item("added", k, val2));
+                newItem = new ItemBuilder()
+                        .withChange("added")
+                        .withKey(k)
+                        .withValue(val2)
+                        .build();
             } else if (Objects.equals(val1, val2)) {
-                results.add(new Item("same", k, val1));
+                newItem = new ItemBuilder()
+                        .withChange("same")
+                        .withKey(k)
+                        .withValue(val1)
+                        .build();
             } else {
-                results.add(new Item("updated", k, val1, val2));
+                newItem = new ItemBuilder()
+                        .withChange("updated")
+                        .withKey(k)
+                        .withValueOld(val1)
+                        .withValueNew(val2)
+                        .build();
             }
+
+            results.add(newItem);
         }
 
         return results;

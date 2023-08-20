@@ -27,6 +27,8 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.15.2'
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 test {
