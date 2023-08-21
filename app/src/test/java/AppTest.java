@@ -16,8 +16,8 @@ public final class AppTest {
     private static String plain;
     private static String json;
 
-    private static String path1;
-    private static String path2;
+    private static final String PATH1 = "src/test/resources/TestFile1";
+    private static final String PATH2 = "src/test/resources/TestFile2";
 
     @BeforeAll
     public static void getResults() throws IOException {
@@ -26,17 +26,14 @@ public final class AppTest {
         stylish = Files.readString(getPath.apply("src/test/resources/ResultStylish.txt"));
         plain = Files.readString(getPath.apply("src/test/resources/ResultPlain.txt"));
         json = Files.readString(getPath.apply("src/test/resources/ResultJson.txt"));
-
-        path1 = getPath.apply("src/test/resources/TestFile1").toString();
-        path2 = getPath.apply("src/test/resources/TestFile2").toString();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {".json", ".yml"})
     void testStylish(String suffix) throws Exception {
         String expected = stylish;
-        String file1 = path1 + suffix;
-        String file2 = path2 + suffix;
+        String file1 = PATH1 + suffix;
+        String file2 = PATH2 + suffix;
         String actual = Differ.generate(file1, file2, "stylish");
         assertEquals(expected, actual);
     }
@@ -45,8 +42,8 @@ public final class AppTest {
     @ValueSource(strings = {".json", ".yml"})
     void testPlain(String suffix) throws Exception {
         String expected = plain;
-        String file1 = path1 + suffix;
-        String file2 = path2 + suffix;
+        String file1 = PATH1 + suffix;
+        String file2 = PATH2 + suffix;
         String actual = Differ.generate(file1, file2, "plain");
         assertEquals(expected, actual);
     }
@@ -55,8 +52,8 @@ public final class AppTest {
     @ValueSource(strings = {".json", ".yml"})
     void testJson(String suffix) throws Exception {
         String expected = json;
-        String file1 = path1 + suffix;
-        String file2 = path2 + suffix;
+        String file1 = PATH1 + suffix;
+        String file2 = PATH2 + suffix;
         String actual = Differ.generate(file1, file2, "json");
         assertEquals(expected, actual);
     }
@@ -65,8 +62,8 @@ public final class AppTest {
     @ValueSource(strings = {".json", ".yml"})
     void testDefault(String suffix) throws Exception {
         String expected = stylish;
-        String file1 = path1 + suffix;
-        String file2 = path2 + suffix;
+        String file1 = PATH1 + suffix;
+        String file2 = PATH2 + suffix;
         String actual = Differ.generate(file1, file2);
         assertEquals(expected, actual);
     }
