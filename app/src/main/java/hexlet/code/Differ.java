@@ -8,6 +8,10 @@ import java.util.Map;
 
 public class Differ {
 
+    public static final String TYPE_JSON = "json";
+    public static final String TYPE_YML1 = "yml";
+    public static final String TYPE_YML2 = "yaml";
+
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
         Path path1 = Paths.get(filepath1).toAbsolutePath().normalize();
         Path path2 = Paths.get(filepath2).toAbsolutePath().normalize();
@@ -33,10 +37,10 @@ public class Differ {
     private static String getType(String filepath) {
         String format = "";
 
-        if (filepath.endsWith("json")) {
-            format = "json";
-        } else if (filepath.endsWith("yml") || filepath.endsWith("yaml")) {
-            format = "yml";
+        if (filepath.endsWith(TYPE_JSON)) {
+            format = TYPE_JSON;
+        } else if (filepath.endsWith(TYPE_YML1) || filepath.endsWith(TYPE_YML2)) {
+            format = TYPE_YML1;
         } else {
             throw new Error("Invalid type of file!");
         }

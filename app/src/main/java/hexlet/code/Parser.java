@@ -7,16 +7,19 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.util.HashMap;
 import java.util.Map;
 
+import static hexlet.code.Differ.TYPE_JSON;
+import static hexlet.code.Differ.TYPE_YML1;
+
 public class Parser {
     public static Map<String, Object> parseData(String data, String type) throws Exception {
 
         Map<String, Object> result = new HashMap<>();
 
-        if (type.equals("json")) {
+        if (type.equals(TYPE_JSON)) {
             ObjectMapper mapperJson = new ObjectMapper();
             result = mapperJson.readValue(data, new TypeReference<>() {
             });
-        } else if (type.equals("yml")) {
+        } else if (type.equals(TYPE_YML1)) {
             ObjectMapper mapperYaml = new YAMLMapper();
             result = mapperYaml.readValue(data, new TypeReference<>() {
             });

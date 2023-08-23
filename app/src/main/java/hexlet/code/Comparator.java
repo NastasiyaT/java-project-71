@@ -8,6 +8,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Comparator {
+
+    public static final String TAG_ADDED = "added";
+    public static final String TAG_REMOVED = "removed";
+    public static final String TAG_SAME = "same";
+    public static final String TAG_UPDATED = "updated";
+
     public static List<Item> compare(Map<String, Object> fileContent1, Map<String, Object> fileContent2) {
 
         Set<String> keys = new TreeSet<>();
@@ -34,25 +40,25 @@ public class Comparator {
 
         if (caseRemoved) {
             return Item.builder()
-                    .withChange("removed")
+                    .withChange(TAG_REMOVED)
                     .withKey(key)
                     .withValue(val1)
                     .build();
         } else if (caseAdded) {
             return Item.builder()
-                    .withChange("added")
+                    .withChange(TAG_ADDED)
                     .withKey(key)
                     .withValue(val2)
                     .build();
         } else if (caseEqual) {
             return Item.builder()
-                    .withChange("same")
+                    .withChange(TAG_SAME)
                     .withKey(key)
                     .withValue(val1)
                     .build();
         } else {
             return Item.builder()
-                    .withChange("updated")
+                    .withChange(TAG_UPDATED)
                     .withKey(key)
                     .withValueOld(val1)
                     .withValueNew(val2)

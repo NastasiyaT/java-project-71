@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static hexlet.code.Comparator.TAG_ADDED;
+import static hexlet.code.Comparator.TAG_REMOVED;
+import static hexlet.code.Comparator.TAG_SAME;
+import static hexlet.code.Comparator.TAG_UPDATED;
+
 public final class Plain implements Format {
     public static final String PLAIN_NAME = "plain";
 
     public String format(List<Item> items) {
 
         return items.stream()
-                .filter(i -> !i.getChange().equals("same"))
+                .filter(i -> !i.getChange().equals(TAG_SAME))
                 .map(Plain::getLine)
                 .collect(Collectors.joining("\n"));
     }
@@ -34,14 +39,14 @@ public final class Plain implements Format {
         String key = obj.getKey();
 
         switch (diff) {
-            case "added" -> {
+            case TAG_ADDED -> {
                 Object a = obj.getValue();
                 return "Property '" + key + "' was added with value: " + modifyValue(a);
             }
-            case "removed" -> {
+            case TAG_REMOVED -> {
                 return  "Property '" + key + "' was removed";
             }
-            case "updated" -> {
+            case TAG_UPDATED -> {
                 Object o = obj.getValueOld();
                 Object n = obj.getValueNew();
                 return  "Property '" + key + "' was updated. From "

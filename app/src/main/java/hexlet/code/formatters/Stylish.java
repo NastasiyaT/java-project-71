@@ -5,6 +5,11 @@ import hexlet.code.Item;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static hexlet.code.Comparator.TAG_ADDED;
+import static hexlet.code.Comparator.TAG_REMOVED;
+import static hexlet.code.Comparator.TAG_SAME;
+import static hexlet.code.Comparator.TAG_UPDATED;
+
 public final class Stylish implements Format {
     public static final String STYLISH_NAME = "stylish";
 
@@ -22,16 +27,16 @@ public final class Stylish implements Format {
         String key = obj.getKey();
 
         switch (diff) {
-            case "added" -> {
+            case TAG_ADDED -> {
                 return "  + " + key + ": " + obj.getValue();
             }
-            case "removed" -> {
+            case TAG_REMOVED -> {
                 return "  - " + key + ": " + obj.getValue();
             }
-            case "same" -> {
+            case TAG_SAME -> {
                 return "    " + key + ": " + obj.getValue();
             }
-            case "updated" -> {
+            case TAG_UPDATED -> {
                 return "  - " + key + ": " + obj.getValueOld() + "\n"
                         + "  + " + key + ": " + obj.getValueNew();
             }
